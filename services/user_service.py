@@ -30,6 +30,6 @@ class UserService:
     def get_units_from_user(self, user_id: UUID):
         units = self.repository.get_user_units(user_id=user_id)
         
-        units_ids = set([u['id'] for u in units])
+        units_ids = set([u.id for u in units])
         
         return self.galileo_service.get_unit_by_ids(units_ids)
