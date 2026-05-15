@@ -14,5 +14,5 @@ class GalileoService:
         return [
             unit
             for unit in units
-            if unit.get("lojaId") in ids
+            if str(unit.get("lojaId")) in ids
         ]
