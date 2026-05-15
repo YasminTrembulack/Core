@@ -7,7 +7,7 @@ from repository.user_repository import UserRepository
 
 class UserService:
 
-    def __init__(self, db: Session,):
+    def __init__(self, db: Session):
         self.repository = UserRepository(db)
 
     def create_user_if_not_exists(self, phone: str, first_name: str | None = None, last_name: str | None = None):
