@@ -13,8 +13,6 @@ class GalileoService:
         logger.info(f"User unit ids: {ids}")
         
         units = get_request(url)
-
-        logger.info(f"User unit ids: {units[:10]}")
         
         return [
             unit

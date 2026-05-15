@@ -28,8 +28,8 @@ class UserService:
         return self.repository.add_unit_to_user(user_id=user_id, unit_id=unit_id)
 
     def get_units_from_user(self, user_id: UUID):
-        units = self.repository.get_user_units(user_id=user_id)
+        user_units = self.repository.get_user_units(user_id=user_id)
         
-        units_ids = set([u.id for u in units])
+        units_ids = set([uu.unit_id for uu in user_units])
         
         return self.galileo_service.get_unit_by_ids(units_ids)
