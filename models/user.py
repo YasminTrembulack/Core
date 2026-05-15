@@ -2,7 +2,7 @@ import uuid
 
 from sqlalchemy import String, Boolean, Text, TIMESTAMP, text
 from sqlalchemy.dialects.postgresql import UUID
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from database.connection import Base
 
@@ -27,3 +27,5 @@ class User(Base):
     created_at: Mapped[str] = mapped_column(TIMESTAMP, server_default=text("CURRENT_TIMESTAMP"))
 
     updated_at: Mapped[str] = mapped_column(TIMESTAMP, server_default=text("CURRENT_TIMESTAMP"), onupdate=text("CURRENT_TIMESTAMP"))
+    
+    units = relationship("UserUnit", back_populates="user")

@@ -8,14 +8,6 @@ from services.user_service import UserService
 
 router = APIRouter()
 
-@router.post("/users")
-def create_user(db: Session = Depends(get_db)):
-    return
-
-@router.delete("/users/{id}")
-def create_user(id: UUID):
-    return
-
 @router.post("/users/{user_id}/units/{unit_id}")
 def add_unit(user_id: UUID, unit_id: UUID, db: Session = Depends(get_db)):
     service = UserService(db)
