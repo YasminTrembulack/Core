@@ -33,7 +33,7 @@ class UserRepository:
         )
 
 
-    def add_unit_to_user(self, user_id: UUID, unit_id: UUID):
+    def add_unit_to_user(self, user_id: UUID, unit_id: str):
         relation = UserUnit(
             user_id=user_id,
             unit_id=unit_id

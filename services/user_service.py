@@ -22,7 +22,7 @@ class UserService:
             last_name=last_name
         )
 
-    def link_user_to_unit(self, user_id: UUID, unit_id: UUID):
+    def link_user_to_unit(self, user_id: UUID, unit_id: str):
         return self.repository.add_unit_to_user(user_id=user_id, unit_id=unit_id)
 
     def get_units_from_user(self, user_id: UUID):

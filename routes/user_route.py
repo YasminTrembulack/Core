@@ -9,7 +9,7 @@ from services.user_service import UserService
 router = APIRouter()
 
 @router.post("/users/{user_id}/units/{unit_id}")
-def add_unit(user_id: UUID, unit_id: UUID, db: Session = Depends(get_db)):
+def add_unit(user_id: UUID, unit_id: str, db: Session = Depends(get_db)):
     service = UserService(db)
 
     return service.link_user_to_unit(
