@@ -25,7 +25,7 @@ def add_unit(user_id: UUID, unit_id: UUID, db: Session = Depends(get_db)):
         unit_id=unit_id
     )
 
-@router.post("/users/{user_id}/units")
+@router.get("/users/{user_id}/units")
 def get_user_units(user_id: UUID, db: Session = Depends(get_db)):
     service = UserService(db)
 
