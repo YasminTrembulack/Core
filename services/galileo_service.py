@@ -1,6 +1,6 @@
 from typing import Set
 
-from fastapi.logger import logger
+from logger import logger
 
 from config import settings
 from utils.http_client import get_request
