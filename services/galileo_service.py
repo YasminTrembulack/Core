@@ -19,3 +19,9 @@ class GalileoService:
             for unit in units
             if str(unit.get("lojaId")) in ids
         ]
+        
+    def get_alarms(self):
+        url = f"{settings.EXTERNAL_API_URL}?route=alarms"
+        logger.info(f"Getting alarms...")
+        
+        return get_request(url)
