@@ -1,6 +1,6 @@
-from uuid import UUID
-
 from fastapi import APIRouter, Depends
+from grpc import Status
+from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session
 
 from database.connection import get_db
@@ -8,17 +8,18 @@ from services.user_service import UserService
 
 router = APIRouter()
 
-@router.post("/users/{user_id}/units/{unit_id}")
-def add_unit(user_id: UUID, unit_id: str, db: Session = Depends(get_db)):
-    service = UserService(db)
+class UserCreate(BaseModel):
+    phone: str = Field(..., description="Número de telefone com DDD", example="5511999999999")
+    first_name: str | None = None
+    last_name: str | None = None
 
-    return service.link_user_to_unit(
-        user_id=user_id,
-        unit_id=unit_id
+
+@router.post("/user", status_code=Status.HTTP_201_CREATED)
+def create_user(payload: UserCreate, db: Session = Depends(get_db)):
+    service = UserService(db)
+    
+    return service.create_user_if_not_exists(
+        first_name=payload.first_name,
+        last_name=payload.last_name,
+        phone=payload.phone,
     )
-
-@router.get("/users/{user_id}/units")
-def get_user_units(user_id: UUID, db: Session = Depends(get_db)):
-    service = UserService(db)
-
-    return service.get_units_from_user(user_id)
