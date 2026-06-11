@@ -22,5 +22,5 @@ class UserUnitService:
         
         return self.galileo_service.get_unit_by_ids(units_ids)
     
-    def get_users_from_unit(self, unit_id:str):
+    def get_users_from_unit(self, unit_id: int):
         return self.repository.get_user_units_by_unit_id(unit_id=unit_id)
