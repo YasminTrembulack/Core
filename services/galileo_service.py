@@ -21,7 +21,7 @@ class GalileoService:
         ]
         
     def get_alarms(self):
-        url = f"{settings.EXTERNAL_API_URL}?route=alarms"
+        url = f"{settings.EXTERNAL_API_URL}?route=alarmes"
         logger.info(f"Getting alarms...")
         
         return get_request(url)
