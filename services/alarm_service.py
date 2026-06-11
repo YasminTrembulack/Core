@@ -26,7 +26,7 @@ class AlarmService:
     
     def get_new_alarms(self):
         current_alarms = self.galileo_service.get_alarms()
-        
+        logger.info(current_alarms)
         # 1. Defensive Check: If the API returned a single dictionary instead of a list
         if isinstance(current_alarms, dict):
             current_alarms = [current_alarms]
