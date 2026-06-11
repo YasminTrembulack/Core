@@ -18,4 +18,4 @@ class UserUnit(Base):
 
     created_at: Mapped[str] = mapped_column(TIMESTAMP, server_default=text("CURRENT_TIMESTAMP"))
 
-    user = relationship("User", back_populates="units")
+    user = relationship("User", back_populates="units", lazy="joined")

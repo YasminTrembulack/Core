@@ -23,9 +23,16 @@ class UserUnitRepository:
         return relation
 
 
-    def get_user_units(self, user_id: UUID):
+    def get_user_units_by_user_id(self, user_id: UUID):
         return (
             self._db.query(UserUnit)
             .filter(UserUnit.user_id == user_id)
+            .all()
+        )
+    
+    def get_user_units_by_unit_id(self, unit_id: int):
+        return (
+            self._db.query(UserUnit)
+            .filter(UserUnit.unit_id == unit_id)
             .all()
         )

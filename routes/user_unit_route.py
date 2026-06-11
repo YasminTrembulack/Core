@@ -23,8 +23,14 @@ def create_user_unit(payload: UserUnitCreate, db: Session = Depends(get_db)):
     )
 
 
-@router.get("/user-unit/{user_id}")
+@router.get("/user-unit/user/{user_id}")
 def get_user_units_by_user_id(user_id: UUID, db: Session = Depends(get_db)):
     service = UserUnitService(db)
 
     return service.get_units_from_user(user_id)
+
+@router.get("/user-unit/unit/{unit_id}")
+def get_user_units_by_unit_id(unit_id: UUID, db: Session = Depends(get_db)):
+    service = UserUnitService(db)
+
+    return service.get_users_from_unit(unit_id)
