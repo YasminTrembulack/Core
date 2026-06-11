@@ -30,7 +30,7 @@ class UserUnitRepository:
             .all()
         )
     
-    def get_user_units_by_unit_id(self, unit_id: int):
+    def get_user_units_by_unit_id(self, unit_id: str):
         return (
             self._db.query(UserUnit)
             .filter(UserUnit.unit_id == unit_id)
