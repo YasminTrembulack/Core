@@ -1,5 +1,4 @@
-from fastapi import APIRouter, Depends
-from grpc import Status
+from fastapi import APIRouter, Depends, status
 from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session
 
@@ -14,7 +13,7 @@ class UserCreate(BaseModel):
     last_name: str | None = None
 
 
-@router.post("/user", status_code=Status.HTTP_201_CREATED)
+@router.post("/user", status_code=status.HTTP_201_CREATED)
 def create_user(payload: UserCreate, db: Session = Depends(get_db)):
     service = UserService(db)
     
