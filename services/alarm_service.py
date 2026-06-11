@@ -26,12 +26,10 @@ class AlarmService:
     
     def get_new_alarms(self):
         current_alarms = self.galileo_service.get_alarms()
-        logger.info(current_alarms)
-        # 1. Defensive Check: If the API returned a single dictionary instead of a list
+
         if isinstance(current_alarms, dict):
             current_alarms = [current_alarms]
             
-        # 2. Defensive Check: If the API returned nothing or an unexpected string type
         if not isinstance(current_alarms, list):
             logger.error(f"Expected a list of alarms, but got: {type(current_alarms)}")
             return []
@@ -39,12 +37,11 @@ class AlarmService:
         new_alarms = []
         
         for alarm in current_alarms:
-            # 3. Defensive Check: Ensure the item inside the list is actually a dictionary
             if not isinstance(alarm, dict):
                 logger.warning(f"Skipping invalid alarm item type: {type(alarm)}")
                 continue
                 
-            alarm_id = str(alarm.get("alarmeId")) # Safe retrieval using .get()
+            alarm_id = str(alarm.get("alarmeId"))
             if not alarm_id or alarm_id == "None":
                 continue
 
