@@ -10,7 +10,7 @@ from services.alarm_service import AlarmService
 router = APIRouter()
 
 class AlarmCreate(BaseModel):
-    alarm_id: str
+    alarm_id: int
     status: AlarmStatus
 
 @router.post("/alarm", status_code=status.HTTP_201_CREATED)
@@ -19,7 +19,7 @@ def create_alarms(payload: AlarmCreate, db: Session = Depends(get_db)):
     service = AlarmService(db)
     
     return service.create_alarm_if_not_exists(
-        alarm_id=payload.alarm_id,
+        alarm_id=str(payload.alarm_id),
         status=payload.status
     )
 
