@@ -18,6 +18,11 @@ class AlarmService:
             alarm_id=alarm_id,
             status=status
         )
+        
+    def get_alarms_from_unit_id(self, unit_id: str):
+        current_alarms = self.galileo_service.get_alarms()
+        
+        return [alarm for alarm in current_alarms if str(alarm.get("lojaId")) == unit_id]
     
     def get_new_alarms(self):
         current_alarms = self.galileo_service.get_alarms()
@@ -32,9 +37,6 @@ class AlarmService:
         new_alarms = []
         
         for alarm in current_alarms:
-            if not isinstance(alarm, dict):
-                logger.warning(f"Skipping invalid alarm item type: {type(alarm)}")
-                continue
                 
             alarm_id = str(alarm.get("alarmeId"))
             if not alarm_id or alarm_id == "None":

@@ -24,7 +24,14 @@ def create_alarms(payload: AlarmCreate, db: Session = Depends(get_db)):
     )
 
 @router.get("/alarm")
-def get_user_units_by_user_id(db: Session = Depends(get_db)):
+def get_alarms(db: Session = Depends(get_db)):
     service = AlarmService(db)
 
     return service.get_new_alarms()
+
+
+@router.get("/alarm/unit{unit_id}")
+def get_alarms_from_unit(unit_id: str, db: Session = Depends(get_db)):
+    service = AlarmService(db)
+
+    return service.get_alarms_from_unit_id(unit_id)
