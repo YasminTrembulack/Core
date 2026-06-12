@@ -14,11 +14,6 @@ class AlarmService:
         self.galileo_service = GalileoService()
 
     def create_alarm_if_not_exists(self, alarm_id: str, status: AlarmStatus = AlarmStatus.PENDING):
-        existing_alarm = self.repository.find_by_alarm_id(alarm_id)
-
-        if existing_alarm:
-            return existing_alarm
-
         return self.repository.create_alarm(
             alarm_id=alarm_id,
             status=status
