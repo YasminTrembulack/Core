@@ -30,7 +30,7 @@ def get_alarms(db: Session = Depends(get_db)):
     return service.get_new_alarms()
 
 
-@router.get("/alarm/unit{unit_id}")
+@router.get("/alarm/unit/{unit_id}")
 def get_alarms_from_unit(unit_id: str, db: Session = Depends(get_db)):
     service = AlarmService(db)
 
